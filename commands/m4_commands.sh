@@ -5,6 +5,11 @@ terraform init
 terraform validate
 
 # We will pass our variables at the command line
+# -var=billing_code="ACCT8675309"           -- put in terraform.tfvars
+# -var=project="web-app"                    -- put in terraform.tfvars
+# -var=aws_access_key="YOUR_ACCESS_KEY"     -- put in $env:TF_VAR_aws_access_key="YOUR_ACCESS_KEY"
+# -var=aws_secret_key="YOUR_SECRET_KEY"     -- put in $env:TF_VAR_aws_secret_key="YOUR_ACCESS_KEY"
+# -out m4.tfplan
 terraform plan -var=billing_code="ACCT8675309" -var=project="web-app" -var=aws_access_key="YOUR_ACCESS_KEY" -var=aws_secret_key="YOUR_SECRET_KEY" -out m4.tfplan
 
 # Ugh that's unwieldy. Let's store our nonsensitive variables in a file called
