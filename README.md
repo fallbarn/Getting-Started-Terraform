@@ -56,3 +56,60 @@ I hope you enjoy taking this course as much as I did creating it.  I'd love to h
 Thanks and happy automating!
 
 Ned
+#############################################################
+
+SLE NOTES: -
+
+Can AWS Cloudshell be used to explore Terraform?
+
+Yes, you can install Terraform in AWS CloudShell for testing purposes. AWS CloudShell is a browser-based shell that provides a pre-configured environment for running AWS CLI commands and scripts. It also allows you to install additional tools and utilities, including Terraform. [1]
+
+Here are the steps to install Terraform in AWS CloudShell:
+
+Open the AWS CloudShell from the AWS Management Console by navigating to the CloudShell service or by clicking the CloudShell icon in the top navigation bar.
+
+Once the CloudShell terminal is open, you can download the Terraform binary for your desired version and platform. For example, to download the latest version of Terraform for Linux 64-bit, run the following command:
+
+wget https://releases.hashicorp.com/terraform/1.4.6/terraform_1.4.6_linux_amd64.zip
+
+Copy
+
+Insert at cursor
+text
+Replace the version number (1.4.6) with the desired version you want to install.
+
+Unzip the downloaded file using the 
+unzip
+ command:
+
+unzip terraform_1.4.6_linux_amd64.zip
+
+Copy
+
+Insert at cursor
+text
+Move the extracted 
+terraform
+ binary to a directory in your PATH, so you can run it from anywhere:
+
+sudo mv terraform /usr/local/bin/
+
+Copy
+
+Insert at cursor
+text
+Verify the installation by checking the Terraform version:
+
+terraform --version
+
+Copy
+
+Insert at cursor
+text
+You should see the installed version of Terraform printed in the output.
+
+Once Terraform is installed, you can start using it within the CloudShell environment. You can create Terraform configuration files, initialize a working directory, plan and apply changes, and interact with various cloud providers, including AWS. [2]
+
+Keep in mind that AWS CloudShell is a temporary environment, and any files or changes you make will be lost when you close the CloudShell session. If you need to persist your Terraform configurations or state files, you can store them in an AWS service like Amazon S3 or Amazon EFS.
+
+Additionally, AWS CloudShell has some limitations, such as restricted access to certain AWS services and resources. If you encounter any issues or limitations while using Terraform in CloudShell, you may need to use an alternative environment, such as an Amazon EC2 instance or your local development machine. [3]
