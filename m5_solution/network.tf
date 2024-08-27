@@ -81,6 +81,7 @@ resource "aws_security_group" "nginx_sg" {
   vpc_id = aws_vpc.app.id
 
   # HTTP access from anywhere
+  # sle note: used by the ec2 instance so limited to traffic on the local vpc.
   ingress {
     from_port   = 80
     to_port     = 80
