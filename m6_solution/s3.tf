@@ -1,4 +1,5 @@
 # S3 Bucket config#
+# sle note: 1. Create a bucket command.
 resource "aws_s3_bucket" "web_bucket" {
   bucket        = local.s3_bucket_name
   force_destroy = true
@@ -6,7 +7,7 @@ resource "aws_s3_bucket" "web_bucket" {
   tags = local.common_tags
 
 }
-
+# sle note: 2. Create a policy command and point at 1. above. 
 resource "aws_s3_bucket_policy" "web_bucket" {
   bucket = aws_s3_bucket.web_bucket.id
   policy = <<POLICY
@@ -46,7 +47,7 @@ resource "aws_s3_bucket_policy" "web_bucket" {
 }
     POLICY
 }
-
+# sle note: 3. Copy index.html into the bucket
 resource "aws_s3_object" "website" {
   bucket = aws_s3_bucket.web_bucket.bucket
   key    = "/website/index.html"
@@ -56,6 +57,7 @@ resource "aws_s3_object" "website" {
 
 }
 
+# sle note: 4. Copy Globo_logo_Vert.png into the bucket
 resource "aws_s3_object" "graphic" {
   bucket = aws_s3_bucket.web_bucket.bucket
   key    = "/website/Globo_logo_Vert.png"
