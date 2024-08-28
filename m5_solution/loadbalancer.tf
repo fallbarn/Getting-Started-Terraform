@@ -1,4 +1,5 @@
 # aws_lb
+# sle note: 1. Sits at the top of the LB components. Only refs the network components.
 resource "aws_lb" "nginx" {
   name               = "globo-web-alb"
   internal           = false
@@ -12,6 +13,7 @@ resource "aws_lb" "nginx" {
 }
 
 # aws_lb_target_group
+# sle note: 2. Also, it sits at the top and only refers to the network components.
 resource "aws_lb_target_group" "nginx" {
   name     = "nginx-alb-tg"
   port     = 80
@@ -22,6 +24,7 @@ resource "aws_lb_target_group" "nginx" {
 }
 
 # aws_lb_listener
+# sle note: 3. Points at the LoadBalancer and the TargetGroup
 resource "aws_lb_listener" "nginx" {
   load_balancer_arn = aws_lb.nginx.arn
   port              = "80"
@@ -36,11 +39,15 @@ resource "aws_lb_listener" "nginx" {
 }
 
 # aws_lb_target_group_attachment
+# sle note: 4a points to the EC2-1 instance and TargetGroup
+
 resource "aws_lb_target_group_attachment" "nginx1" {
   target_group_arn = aws_lb_target_group.nginx.arn
   target_id        = aws_instance.nginx1.id
   port             = 80
 }
+
+# sle note: 4b Points to the EC2-2 instance and TargetGroup
 
 resource "aws_lb_target_group_attachment" "nginx2" {
   target_group_arn = aws_lb_target_group.nginx.arn
